@@ -200,7 +200,7 @@ func main() {
 		http.StripPrefix("/static/",
 			http.FileServer(http.Dir("client"))))
 	http.HandleFunc("/", rootHandler)
-	http.HandleFunc("/chatroom", socketHandler)
+	http.HandleFunc("/ws", socketHandler)
 	err := http.ListenAndServe(listenAddr, nil)
 	if err != nil {
 		log.Fatal(err)
