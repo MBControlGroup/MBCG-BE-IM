@@ -19,7 +19,7 @@
             return;
         } else {
             var that = this;
-            this.ws = new WebSocket("ws://127.0.0.1:80/chatroom");   
+            this.ws = new WebSocket("ws://127.0.0.1:80/ws");   
             this.ws.onopen = function(event) {
                 console.log('open ws');
                 switch (that.ws.readyState) {
