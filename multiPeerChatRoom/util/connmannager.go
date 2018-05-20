@@ -103,6 +103,15 @@ func GetManagerInstance(processor func(uint32, int, []byte)) *ConnectionManager 
 // InsertSocket insert a client socket into pool
 func (cm *ConnectionManager) InsertSocket(cliID uint32, socket *websocket.Conn) {
 	log.Println("Going to insert client:", cliID)
+
+	// 查看原来的map中对应id的连接是否存在，存在则先关闭连接并删除
+	val, ok := cm.clientMap.Load(cliID)
+	if ok {
+		oldCli := val.(*client)
+		oldCli.Close()
+		cm.clientMap.Delete(cliID)
+	}
+
 	cli := newClient(cliID, socket)
 	cm.clientMap.Store(cliID, cli)
 
