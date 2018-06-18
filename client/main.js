@@ -19,7 +19,7 @@
             return;
         } else {
             var that = this;
-            this.ws = new WebSocket("ws://127.0.0.1:8080/ws");   
+            this.ws = new WebSocket("ws://127.0.0.1:9500/ws");   
             this.ws.onopen = function(event) {
                 console.log('open ws');
                 switch (that.ws.readyState) {
